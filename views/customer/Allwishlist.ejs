@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geek Hardwares</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <%-include("../partial/Bootstrap.ejs")%>
+        <link rel="stylesheet" href="/css/CustomerCss.css">
+    </head>
+
+    <body>
+        <%-include("../partial/customer/Navigation.ejs")%>
+        <table class="table mt-5">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">NAME</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">DELETE</th>
+                <th scope="col">CART</th>
+              </tr>
+            </thead>
+            <tbody>
+                <%
+                    var sno=1;
+                    for (var i = 0; i <result.length; i++)
+                    {
+                %>
+                        <tr>
+                            <td><%=sno++%></td>
+                            <td><img src="/images/<%=result[i].pro_image%>" height="100" width="100"></td>
+                            <td><%=result[i].pro_name%></td>
+                            <td><%=result[i].pro_price%></td>
+                            <td><%=result[i].description%></td>
+                            <td><a class="btn btn-danger" href="/wishlist/removewishlist/<%=result[i].id%>">REMOVE</a></td>
+                            <td></div>
+                                <%if((likeitem[i].wishItem)&&(likeitem[i].pro_id)){
+                                    console.log(likeitem[i].wishItem+" and "+likeitem[i].pro_id)%>
+                                    <button onclick="check(this,'<%=result[i].id%>','<%=userLogin%>')" class="btn">REMOVE FROM CART</button>
+                                <%}else{
+                                    console.log(likeitem[i].wishItem+" and "+likeitem[i].pro_id)%>
+                                    <button onclick="check(this,'<%=result[i].id%>','<%=userLogin%>')" class="btn">ADD TO CART</button>
+                                <%}%>        
+                            </div></td>
+                        </tr>
+                <%
+                    }
+                %>
+
+            </tbody>
+          </table>
+          <script src="/js/Index.js"></script>
+    </body>
+</html>

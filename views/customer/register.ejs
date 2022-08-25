@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/CustomerReg.css">
+    <title>Registration</title>
+</head>
+
+<body>
+    <%-include("../partial/customer/Navigation.ejs")%>
+    <div class="container-fluid ">
+        <div class="form-body">
+            <div class="row" style="margin-left:30%">
+                <div class="form-holder">
+                    <div class="form-content">
+                        <div class="form-items">
+                            <h3 class="text-center">Registration Form</h3>
+                            <p class="text-center">Fill Complete Detail Here</p>
+                            
+                            <form action="/customer/register" method="post"> 
+    
+                                <div class="col-md-12">
+                                   <input onkeyup="validateName()" id="eName" class="form-control" type="text" name="name" placeholder="Full Name" autocomplete="off">
+                                   <small id="userName"></small>
+                                </div>
+    
+                                <div class="col-md-12">
+                                    <input onkeyup="validateEmail()" id="email" class="form-control" type="email" name="email" placeholder="E-mail Address" autocomplete="off">
+                                    <small id="emailErr"></small>
+                                </div>
+    
+                               <div class="col-md-12">
+                                    <input t onkeyup="validatePassword()" id="password" class="form-control" type="password" name="password" placeholder="Password" autocomplete="off">
+                                    <small id="passErr"></small>
+                               </div>
+
+                               <div class="col-md-12">
+                                <input t onkeyup="validateReEnterPassword()" id="rePassword" class="form-control" type="password" name="rePassword" placeholder="Re-Enter Password" autocomplete="off">
+                                <small id="repassErr"></small>
+                               </div>
+                           
+                                <div class="col-md-12">
+                                    <input onkeyup="validateMobiile()" id="mobile" class="form-control" type="text" name="mobile" placeholder="Mobile Number" autocomplete="off">
+                                    <small id="mobileErr"></small>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input onkeyup="validateAddress()" id="address" class="form-control" type="text" name="address" placeholder="Address" autocomplete="off">
+                                    <small id="addressErr"></small>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input onkeyup="validateAge()" id="age" class="form-control" type="text" name="age" placeholder="Age" autocomplete="off">
+                                    <small id="ageErr"></small>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input onkeyup="validateGender()" id="gender" class="form-control" type="text" name="gender" placeholder="gender" autocomplete="off">
+                                    <small id="genderErr"></small>
+                                </div>
+                                
+                                <div class="form-button mt-3">
+                                    <button onclick="return validateRegistor()" id="submit" type="submit" class="btn btn-primary ml-3 text-center">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+      </div>
+
+      <script src="/js/Register.js">
+
+      </script>
+</body>
+
+</html>

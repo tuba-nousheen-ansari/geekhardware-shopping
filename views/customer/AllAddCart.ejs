@@ -1,0 +1,153 @@
+<html>
+<head>
+  <link rel="stylesheet" href="/css/CustomerCss.css">
+  <link rel="stylesheet" href="/css/Cart.css">
+
+  <%- include("../partial/Bootstrap.ejs")%>
+  
+  <style>
+.btn {
+    margin-top: 1rem;
+    margin-left: 45%;
+}
+  </style>
+</head>
+
+<body>
+  <%-include("../partial/customer/Navigation.ejs")%>
+  
+<script>
+  function getCartItem(){
+  $.ajax({
+          url: '/cart/allcartItem',
+          success: function(result){
+            for(i=0; i< result.length; i++)
+              result[i].pro_qty = 1;
+
+            localStorage.setItem("item-list",JSON.stringify(result));
+          }
+      });
+  }
+  
+  getCartItem();
+</script>   
+
+
+<main>
+  <div class="cart">
+    <div class="cart-labels">
+      <ul>
+        <li class="item item-heading">Item</li>
+        <li class="price">Price</li>
+        <li class="quantity">Quantity</li>
+        <li class="subtotal">Subtotal</li>
+      </ul>
+    </div>
+
+    <%
+      let cartItems=[];
+      
+      for (var i = 0; i <result.length; i++)
+      {
+        cartItems.push(result[i]);
+    %>
+        <div class="cart-product">
+          <div class="item">
+            <div class="product-image">
+              <img src="/images/<%=result[i].pro_image%>" alt="Placholder Image" class="product-frame">
+            </div>
+            <div class="product-details">
+              <h1><strong><span class="item-quantity"></span><%=result[i].pro_name%></h1>
+              <p><strong><%=result[i].description%></strong></p>
+              <p>Product Id : <%=result[i].pro_id%></p>
+              <p>Quantity : <%=result[i].pro_qty%></p>
+            </div>
+          </div>
+          <div class="price"><%=result[i].pro_price%></div>
+          <div class="quantity">
+            <input type="number" id="qty" value="1" min="1" max="<%=result[i].pro_qty%>" class="quantity-field" onchange="updateQty(this.value,'<%=result[i].pro_price%>','<%=i%>')">
+          </div>
+          <div class="subtotal" id="total<%=i%>"></div>
+          <div class="remove">
+            <a class="btn btn-danger" href="/cart/removefromcart/<%=result[i].pro_id%>">REMOVE</a>
+          </div>
+        </div>
+    <%
+      }
+    %>
+    <button data-toggle="modal" data-target="#placeOrder" class="btn btn-primary">Place Order</button>
+</main>
+
+<!-- The Place order Modal -->
+<div class="modal" id="placeOrder">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Order Placed</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="form-group">
+        <label>Shipping Address</label>
+        <textarea id="address" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Contact Number</label>
+        <input type="text" id="contact" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label>Email </label>
+      <input type="email" id="email" class="form-control"/>
+  </div>
+
+    <button onclick="placeOrder()" type="submit" class="btn btn-success">Check Out</button>
+  </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function placeOrder(){
+     var address = document.getElementById("address").value;
+     var contact = document.getElementById("contact").value;
+     var email = document.getElementById("email").value; 
+     var itemList =  localStorage.getItem("item-list");
+     console.log(typeof(itemList));
+
+     $.ajax({
+         url: "/order/orderplaced/"+itemList+"/"+address+"/"+contact+"/"+email,
+         success : function(result){
+             alert("Order Placed......");
+             $.ajax({
+              url: "/cart/allcartremove",
+              success : function(result){
+                alert("Cart Deleted........");
+              }
+             });
+         }
+     });
+  }
+  function updateQty(qty,price,i){
+    var spanObj = document.getElementById("total"+i);
+    var total = (qty*1) * (price*1);
+    spanObj.innerHTML = ""+total;
+    itemList = localStorage.getItem("item-list");
+    itemList = JSON.parse(itemList);
+    itemList[i].pro_qty = qty*1;
+    localStorage.setItem("item-list",JSON.stringify(itemList));
+  }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<div class="sidebar close">
+  <div class="logo-details">
+    <i class='fas fa-faucet'></i>
+    <span class="logo_name">Geek Hardwares</span>
+  </div>
+  <ul class="nav-links">
+    <li>
+      <a href="#">
+        <i class='bx bx-grid-alt'></i>
+        <span class="link_name">DASHBOARD</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">CATEGORY</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="icon-link">
+        <a href="#">
+          <i class='bx bx-collection'></i>
+          <span class="link_name">CATEGORY</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow'></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">CATEGORY</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#addCategory">ADD CATEGORY</a></li>
+        <li><a href="#">VIEW ALL</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="icon-link">
+        <a href="#">
+          <i class='far fa-file-powerpoint'></i>
+          <span class="link_name">PRODUCTS</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow'></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">PRODUCT</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#addProduct">ADD PRODUCT</a></li>
+        <li><a href="#">VIEW ALL</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/order/adminorder">
+        <i class='bx bx-pie-chart-alt-2'></i>
+        <span class="link_name">ORDERS</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/order/adminorder" data-toggle="modal" data-target="#allcustomer">ORDERS</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/admin/allcustomerlist">
+        <i class='bx bx-pie-chart-alt-2'></i>
+        <span class="link_name">ALL CUSTOMER</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/admin/allcustomerlist">ALL CUSTOMER</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#">
+        <i class='bx bx-pie-chart-alt-2'></i>
+        <span class="link_name">ORDERS HISTORY</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">ORDERS HISTORY</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/admin/customersupport">
+        <i class='bx bx-pie-chart-alt-2'></i>
+        <span class="link_name">CUSTOMER SUPPORT</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/admin/customersupport">CUSTOMER SUPPORT</a></li>
+      </ul>
+    </li>
+
+    <div class="profile-details">
+      <div class="profile-content">
+        <!--<img src="image/profile.jpg" alt="profileImg">-->
+      </div>
+      <div class="name-job">
+        <div class="profile_name">Admin</div>
+      </div>
+      <i class='bx bx-log-out'></i>
+    </div>
+    </li>
+  </ul>
+</div>
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu'></i>
+    <span class="text">Admin Dashboard</span>
+  </div>
+</section>
+
+
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="addCategory"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCategory">Category</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/category/add" method="post" enctype="multipart/form-data">
+          <label>Category Name:</label>
+          <input type="text" name="cat_name" id="cat_name" class="form-control"  required>
+          <label>Category Image:</label>
+          <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="cat_image" name="cat_image">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="close" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Category</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Product Modal -->
+<div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProduct"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProduct">Products</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/product/add" method="post" enctype="multipart/form-data">
+        <label>Product Name:</label>
+          <input type="text" name="pro_name" id="pro_name" class="form-control"  required>
+          <label>Product Price:</label>
+          <input type="text" name="pro_price" id="pro_price" placeholder="INR" class="form-control"  required>
+          <label>Product Quantity:</label>
+          <input type="number" name="pro_qty" id="pro_qty" class="form-control"  required>
+          <label for="description">Product Description:</label>
+          <textarea class="form-control" rows="4" id="description" name="description"></textarea>
+          <label>Product Image 1:</label>
+          <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="pro_image" name="pro_image">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+          <label>Product Image 2:</label>
+          <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="pro_image2" name="pro_image2">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+          <label>Product Image 3:</label>
+          <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="pro_image3" name="pro_image3">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+          <label>Product Image 4:</label>
+          <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="pro_image4" name="pro_image4">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+          <select class="custom-select">
+            <br>
+          <option selected>Select Category</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Add Product</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>

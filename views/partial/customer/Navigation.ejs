@@ -1,0 +1,45 @@
+<header>
+    <div class="header-1">
+        <a href="#" class="logo"><i class="fas fa-faucet"></i>Geek Hardwares</a>
+
+        <form action="" class="search-box-container">
+            <input type="search" id="search-box" placeholder="Search Products...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+    </div>
+
+        <div class="header-2">
+
+            <div id="menu-bar" class="fas fa-bars"></div>
+
+            <nav class="navbar">
+                <a href="/">HOME</a>
+                <a href="/category/allcategory">CATEGORY</a>
+                <a href="/contact">CONTACT US</a>
+                <a href="/about">ABOUT US</a>
+ 
+            </nav>
+
+            <div class="icons">
+                <a href="/cart/alladdcart" class="fas fa-shopping-cart"></a>
+                <a href="/wishlist/allwishlist" class="fas fa-heart"></a>
+                <!-- <a href="#" class="fas fa-user-circle"></a> -->
+                <div class="dropdown">
+                    <a href="#" class="fas fa-user-circle"></a>
+                    <div class="dropdown-content">
+                    <%if(userLogin){%>
+                        <a href="/order/customerorder" class="fas fa-people-carry">Orders</a>
+                        <a href="/customer/logout" class="fas fa-sign-in-alt">Logout</a>
+                    <%}else{%>
+                      <a href="/customer/login" class="fas fa-sign-in-alt"> Login</a>
+                      <a href="/customer/register" class="fas fa-hands-helping">Register</a>
+                    <%}%>
+                      
+                    </div>
+                  </div>
+            </div>
+
+    </div>
+        </div>
+</header>

@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>All-Customer</title>
+        <%- include("../partial/Bootstrap.ejs")%>
+    </head>
+
+    <body>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">NAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">MOBILE</th>
+            <th scope="col">SUBJECT</th>
+            <th scope="col">QUERY</th>
+            <th scope="col">ANSWER</th>
+            <th scope="col">REMOVE</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            <%
+                var sno=1;
+                for(var i=0; i<result.length; i++)
+                {
+            %>
+                    <tr>
+                        <td><%=sno++%></td>
+                        <td><%=result[i].name%></td>
+                        <td><%=result[i].email%></td>
+                        <td><%=result[i].mobile%></td>
+                        <td><%=result[i].subject%></td>
+                        <td><%=result[i].query%></td>
+                        <td><a class="btn btn-primary" href="#">SEND</a></td>
+                        <td><a class="btn btn-danger" href="#">REMOVE</a></td>
+                    </tr>
+            <%
+                }
+            %>
+        </tbody>
+      </table>
+
+      
+
+      <nav class="navbar">
+        <a href="/admin/dashboard">BACK</a>
+    </nav>
+    </body>
+</html>

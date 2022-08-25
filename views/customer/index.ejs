@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geek Hardwares</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/CustomerCss.css">
+
+</head>
+
+<body>
+    <%-include("../partial/customer/Navigation.ejs")%>
+    <section class="home" id="home">
+
+        <div class="image">
+            <img src="images/home-img.png" alt="">
+        </div>
+        <div class="content">
+            <span>Original and Genuine</span>
+            <h3>Make Your New House A Perfect Home.</h3>
+            <a href="#" class="btn">get started</a>
+        </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- banner section starts  -->
+
+    <section class="banner-container">
+
+        <div class="banner">
+            <img src="images/banner-1.jpg" alt="">
+            <div class="content">
+                <h3>special offer</h3>
+                <p>upto 45% off</p>
+                <a href="#" class="btn">check out</a>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="images/banner-2.jpg" alt="">
+            <div class="content">
+                <h3>limited offer</h3>
+                <p>upto 50% off</p>
+                <a href="#" class="btn">check out</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- banner section ends -->
+
+    <!-- category section starts  -->
+
+    
+
+    <!-- category section ends -->
+
+    <!-- product section starts  -->
+
+    <section class="product" id="product">
+
+        <h1 class="heading">All <span>Product</span></h1>
+
+        <div class="box-container">
+
+            <%
+                for(i=0; i < result.length; i++) 
+                {
+            %>
+
+                    <div class="box">
+                        <span class="discount">-33%</span>
+                        <div class="icons">
+                            <%
+                                if(result[i].wishItem)
+                                {
+                            %>
+                                    <button onclick="checkWishlist(this,'<%=result[i].id%>','<%=userLogin%>')" class="btn">UNLIKE</button>
+                            <%
+                                }
+                                else
+                                {
+                            %>
+                                    <button onclick="checkWishlist(this,'<%=result[i].id%>','<%=userLogin%>')" class="btn">LIKE</button>
+                            <%
+                                }
+                            %>
+
+                        </div>
+                        <img src="images/<%=result[i].pro_image%>" alt="">
+                        <h3><%=result[i].pro_name%></h3>
+                        <div class="price"> Rs<%=result[i].pro_price%> <span> Rs. <%=result[i].pro_price-(13.20)%> </span> </div>
+                        <div class="quantity">
+                            <span>quantity : </span>
+                            <input type="number" min="1" max="1000" value="1">
+                            <span> /pc </span>
+                        </div>
+                        <div>
+                            <a href="/allangles" class="btn btn-succcess text-success">Other Photos</a>
+                        </div>
+                        <%if(result[i].pro_id){%>
+                            <button onclick="check(this,'<%=result[i].id%>','<%=userLogin%>')" class="btn">REMOVE FROM CART</button>
+                        <%}else{%>
+                            <button onclick="check(this,'<%=result[i].id%>','<%=userLogin%>')" class="btn">ADD TO CART</button>
+                        <%}%>        
+                        </div>
+            <%
+                }
+            %>
+            <div>
+                <a href="/viewall" class="btn btn-succcess text-success">View All</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- product section ends -->
+
+    <!-- deal section starts  -->
+
+    <section class="deal" id="deal">
+
+        <div class="content">
+
+            <h3 class="title">Deal of the day</h3>
+            <p>Get amazing discount of 10% extra on all products.</p>
+
+            <div class="count-down">
+                <div class="box">
+                    <h3 id="day">00</h3>
+                    <span>day</span>
+                </div>
+                <div class="box">
+                    <h3 id="hour">00</h3>
+                    <span>hour</span>
+                </div>
+                <div class="box">
+                    <h3 id="minute">00</h3>
+                    <span>minute</span>
+                </div>
+                <div class="box">
+                    <h3 id="second">00</h3>
+                    <span>second</span>
+                </div>
+            </div>
+            <a href="#" class="btn">Check the deal</a>
+
+        </div>
+
+    </section>
+   <script src="/js/Index.js"></script>
+   <%-include("../partial/customer/Footer.ejs")%>
+</body>
+
+</html>
